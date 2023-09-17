@@ -1,4 +1,4 @@
-# Projeto de Cronômetro (Nome do Projeto)
+# Projeto de Cronômetro
 
 Este é um projeto em desenvolvimento e ainda não foi concluído. Por favor, esteja ciente dos seguintes pontos:
 
