@@ -15,11 +15,13 @@ const Cronometro: React.FC = () => {
   const [minutes, setMinutes] = useState(0);
   const [timesEnded, setTimesEnded] = useState(false);
   const [running, setRunning] = useState(false);
+  const [userInput, setUserInput] = useState('');
 
   const startTimer = (minutes: number) => {
     setMinutes(minutes);
     setSeconds(0);
     setTimesEnded(false);
+    setRunning(true);
   };
 
   const zerarCronometro = () => {
@@ -30,6 +32,10 @@ const Cronometro: React.FC = () => {
 
   const pararCronometro = () => {
     setRunning(false);
+  };
+
+  const handleUserInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput(event.target.value);
   };
 
   useEffect(() => {
@@ -63,20 +69,22 @@ const Cronometro: React.FC = () => {
   return (
     <>
       <div>
-        <span>
-          {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
-        </span>
+        <h1>Cronômetro</h1>
       </div>
       <div>
         <TempoDeExibicao minutos={minutes} segundos={seconds} />
         <BotaoIniciar iniciarCronometro={startTimer} minutos={1} />
         <BotaoIniciar iniciarCronometro={startTimer} minutos={5} />
         <BotaoIniciar iniciarCronometro={startTimer} minutos={10} />
-        <BotaoIniciar iniciarCronometro={startTimer} minutos={15} />
         <BotaoIniciar iniciarCronometro={startTimer} minutos={20} />
-        <BotaoIniciar iniciarCronometro={startTimer} minutos={25} />
         <BotaoZerar zerarCronometro={zerarCronometro} />
         <BotaoParar pararCronometro={pararCronometro} />
+        <input
+          type="number"
+          placeholder="Digite os minutos"
+          value={userInput}
+          onChange={handleUserInputChange}
+        />
       </div>
     </>
   );
